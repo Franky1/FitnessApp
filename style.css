@@ -1,0 +1,4 @@
+[data-testid="stVerticalBlock"] > [style*="flex-direction: column;"] > [data-testid="stVerticalBlock"] {
+    background-color: #C9CACB; padding-top: 20px; padding-bottom: 30px; padding-left: 10px
+}
+ 

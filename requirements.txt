@@ -1,4 +1,4 @@
-altai
+altair
 numpy
 panda
 streamlit

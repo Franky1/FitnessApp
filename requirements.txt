@@ -1,9 +1,9 @@
 altair
 numpy
-panda
+pandas
 streamlit
-plotl
+plotly
 seaborn
 scipy
-matplotli
+matplotlib
 joblib

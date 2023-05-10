@@ -1,3 +1,4 @@
+streamlit==1.20.0
 pip==22.3.1
 aiohttp==3.8.3
 aiohttp-retry==2.8.3

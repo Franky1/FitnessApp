@@ -242,6 +242,8 @@ def perf_label(data, weeklyavg):
     weekly = label(weeklyavg)
     st.write(check1.shape)
     st.write(weekly.shape)
+    st.write(check2.shape)
+    st.write(data.shape)
     check1.iloc[:,i] = weekly['Label']
 
     check2.iloc[:,i] = data['Performance']

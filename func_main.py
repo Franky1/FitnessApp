@@ -240,8 +240,8 @@ def perf_label(data, weeklyavg):
     #each time the performance is different in the groupby
     weeklyavg, data = group_by_weeks(data)
     weekly = label(weeklyavg)
-    st.write(check1)
-    st.write(check2)
+    st.write(check1.shape)
+    st.write(weekly.shape)
     check1.iloc[:,i] = weekly['Label']
 
     check2.iloc[:,i] = data['Performance']

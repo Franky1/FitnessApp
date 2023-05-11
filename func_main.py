@@ -189,7 +189,9 @@ def group_by_weeks(data):
     weekly = data.copy()
     count = weekly.groupby('Week').count()
     counts = weekly.copy()
+    st.write(weekly)
     weekly = weekly.groupby('Week').mean()
+    st.write(weekly)
 
   #Add extra features to weekly grouped data
     weekly['Count'] = count['ActivityType']

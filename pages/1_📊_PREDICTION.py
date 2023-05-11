@@ -23,7 +23,6 @@ def main():
     s3 = boto3.client('s3', aws_access_key_id='AKIAW4BRQNULH32VEHOM',
                       aws_secret_access_key='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')
     bucket_name = 'fitnessappdata'
-    username = st.session_state.username
 
     # Define the tite:
     set_bg_hack('Photos/backg.png')
@@ -41,8 +40,6 @@ def main():
             username = st.text_input("WRITE YOUR USER NAME", "", help = "Write your User Name")
             if not existing_users["UserName"].str.contains(username).any():
                 st.error(f"{username} doesn't exist")
-
-    st.session_state.username = username
 
         ############################################################################
         ##################### PREDICTION LABEL FOR NEW ACTIVITIES #################

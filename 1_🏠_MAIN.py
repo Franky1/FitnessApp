@@ -52,8 +52,7 @@ def main():
             if not existing_users["UserName"].str.contains(username).any():
                 st.error(f"{username} doesn't exist")
 
-
-    #username = "CarlaMiquelBlasco"
+    st.session_state.username = username
     sb, mid, expl = st.columns((2,0.3,3))
     with sb:
         opt = st.selectbox('NEW DATA OR SAVED DATA??', ('SELECT ONE OPTION', 'NEW DATA', 'SAVED DATA'), label_visibility="collapsed")

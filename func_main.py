@@ -96,7 +96,6 @@ def clean(data):
                     'EndOfStressPeriod', 'AverageStress', 'Favourite', 'AerobicTrainingEffect'], axis=1)
   to_delete = ['Cardio', 'Yoga', 'Athletic walking', 'Athletic Walking', 'Alpinism', 'Swimming', 'Hike', 'Walk']
   data.drop(data[data['ActivityType'].isin(to_delete)].index, inplace = True)
-  st.write('data cleaned')
   return data
 
 

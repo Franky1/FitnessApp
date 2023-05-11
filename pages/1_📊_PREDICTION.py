@@ -23,6 +23,9 @@ def main():
     s3 = boto3.client('s3', aws_access_key_id='AKIAW4BRQNULH32VEHOM',
                       aws_secret_access_key='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')
     bucket_name = 'fitnessappdata'
+    response = s3.get_object(Bucket='fitnessappdata', Key="UserNames.csv")
+    csv_contents = response['Body'].read().decode('utf-8')
+    existing_users = pd.read_csv(StringIO(csv_contents), index_col = 0)
 
     # Define the tite:
     set_bg_hack('Photos/backg.png')

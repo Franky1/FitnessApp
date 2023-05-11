@@ -232,7 +232,7 @@ def perf_label(data, weeklyavg):
 
   check1 = pd.DataFrame(data=None, columns=['L1', 'L2', 'L3', 'L4', 'L5'], index=weeklyavg.index)
   check2 = pd.DataFrame(data=None, columns=['P1', 'P2', 'P3', 'P4', 'P5'], index=data.index)
-  check1 = check1[:-1]
+  #check1 = check1[:-1]
 
 
   for i in range(5):
@@ -242,14 +242,6 @@ def perf_label(data, weeklyavg):
     #each time the performance is different in the groupby
     weeklyavg, data = group_by_weeks(data)
     weekly = label(weeklyavg)
-    st.write('index check1')
-    st.write(check1.index)
-    st.write('index weekly')
-    st.write(weekly.index)
-    st.write(' check1')
-    st.write(check1)
-    st.write(' weekly')
-    st.write(weekly)
     check1.iloc[:,i] = weekly['Label']
 
     check2.iloc[:,i] = data['Performance']

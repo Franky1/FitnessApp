@@ -303,7 +303,6 @@ def save(data, weekly, new_weeks, df, username, s3, bucket_name):
 
     st.write("Data saved :heavy_check_mark:")
     for key in st.session_state.keys():
-      if key != username:
         del st.session_state[key]
 
 def footnote_css(file_name):

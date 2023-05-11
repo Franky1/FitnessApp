@@ -505,7 +505,6 @@ def save(model, X_train, X_test, y_train, y_test, keylist, y_pred, weekly, data)
     #weekly.to_csv("Data/weekly.csv")
     #data.to_csv("Data/data.csv")
     for key in st.session_state.keys():
-      if key != username:
         del st.session_state[key]
 
 

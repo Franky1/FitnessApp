@@ -21,6 +21,7 @@ def main():
 
     st.markdown(f'<p style="text-align: center; color:#303030; font-size:40px;">READ AND CLEAN THE DATA</p>', unsafe_allow_html=True)
     sb, mid, expl = st.columns((2,0.3,3))
+    #username = st.text_input('Movie title', 'Life of Brian')
     username = "CarlaMiquelBlasco"
     with sb:
         opt = st.selectbox('NEW DATA OR SAVED DATA??', ('SELECT ONE OPTION', 'NEW DATA', 'SAVED DATA'), label_visibility="collapsed")

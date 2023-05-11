@@ -8,3 +8,4 @@ scipy
 matplotlib
 joblib
 scikit-learn
+boto3

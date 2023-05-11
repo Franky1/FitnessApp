@@ -62,6 +62,7 @@ def main():
 
             ## LABEL THE DATASET (PERFORMANCE CALCULATION + GROUP BY WEEKS)
             feat = data.columns
+            st.write(data)
             weekly, data = group_by_weeks(data)
             data, weekly = perf_label(data[feat], weekly)
 

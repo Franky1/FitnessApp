@@ -281,17 +281,29 @@ def search_prev(dy, weekly, data):
     return prev_weeks, w
 
 
-def save(data, weekly, new_weeks, df):
+def save(data, weekly, new_weeks, df, username, s3, bucket_name):
     show(new_weeks)
     data = data.append(df)
     weekly = weekly.append(new_weeks)
     weekly = weekly.fillna(0)
     data = data.fillna(0)
-    data.to_csv('Data/data.csv')
-    weekly.to_csv('Data/weekly.csv')
-    #df = pd.read_csv('Data/data.csv') #
+
+    #SAVE TO AWS:
+    object_key1 = f"Data/{username}Data.csv"
+    object_key2 = f"Data/{username}Weekly.csv"
+
+
+    csv_buffer1 = StringIO()
+    data.to_csv(csv_buffer1, index=False)
+    s3.put_object(Bucket=bucket_name, Key=object_key1, Body=csv_buffer1.getvalue())
+
+    csv_buffer2 = StringIO()
+    weekly.to_csv(csv_buffer2, index = True)
+    s3.put_object(Bucket=bucket_name, Key=object_key2, Body=csv_buffer2.getvalue())
+
     st.write("Data saved :heavy_check_mark:")
     for key in st.session_state.keys():
+      if key != username:
         del st.session_state[key]
 
 def footnote_css(file_name):

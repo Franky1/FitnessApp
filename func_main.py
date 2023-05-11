@@ -190,7 +190,6 @@ def group_by_weeks(data):
     counts = weekly.copy()
     weekly = weekly.drop(['ActivityType', 'Date', 'Title', 'day-of-week'], axis = 1).groupby('Week').mean()
     weekly = weekly.groupby('Week').mean()
-    st.write(weekly)
 
   #Add extra features to weekly grouped data
     weekly['Count'] = count['ActivityType']
@@ -241,6 +240,8 @@ def perf_label(data, weeklyavg):
     #each time the performance is different in the groupby
     weeklyavg, data = group_by_weeks(data)
     weekly = label(weeklyavg)
+    st.write(check1)
+    st.write(check2)
     check1.iloc[:,i] = weekly['Label']
 
     check2.iloc[:,i] = data['Performance']

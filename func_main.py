@@ -232,6 +232,8 @@ def perf_label(data, weeklyavg):
 
   check1 = pd.DataFrame(data=None, columns=['L1', 'L2', 'L3', 'L4', 'L5'], index=weeklyavg.index)
   check2 = pd.DataFrame(data=None, columns=['P1', 'P2', 'P3', 'P4', 'P5'], index=data.index)
+  check1 = check1[:-1]
+
 
   for i in range(5):
     #performance is the average of 20 times

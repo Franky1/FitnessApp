@@ -90,8 +90,7 @@ def main():
             s3 = boto3.client('s3', aws_access_key_id='AKIAW4BRQNULH32VEHOM',
                       aws_secret_access_key='M11XB8P1VXF64LrDt6dRuS7Jjp4FQDrVUqW+QrFQ')
 
-            # Replace <YOUR_BUCKET_NAME> with the name of your S3 bucket
-            bucket_name = 'iniitestt'
+            bucket_name = 'fitnessappdata'
 
             # Replace <YOUR_OBJECT_KEY> with the key name of the object you want to upload (this will be the name of the file in the bucket)
             object_key1 = f"Data/{username}Data.csv"
@@ -107,8 +106,6 @@ def main():
             weekly.to_csv(csv_buffer2, index = True)
             csv_data2 = csv_buffer2.getvalue().encode('utf-8')
             s3.upload_fileobj(BytesIO(csv_data2), bucket_name, object_key2)
-            ###data.to_csv('Data/data.csv')
-            ###weekly.to_csv('Data/weekly.csv')
 
             # Allow the user to download it:
             dt, we, pad = st.columns((1,1,3))
@@ -138,9 +135,9 @@ def main():
             k1 = f"Data/{username}Data.csv"
             k2 = f"Data/{username}Weekly.csv"
 
-            response1 = s3.get_object(Bucket='iniitestt', Key=k1)
+            response1 = s3.get_object(Bucket='fitnessappdata', Key=k1)
             csv_contents1 = response1['Body'].read().decode('utf-8')
-            response2 = s3.get_object(Bucket='iniitestt', Key=k2)
+            response2 = s3.get_object(Bucket='fitnessappdata', Key=k2)
             csv_contents2 = response2['Body'].read().decode('utf-8')
 
             # Convert the CSV data into a Pandas DataFrame

@@ -20,6 +20,10 @@ from func1 import*
 
 
 def main():
+    s3 = boto3.client('s3', aws_access_key_id='AKIAW4BRQNULH32VEHOM',
+                      aws_secret_access_key='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')
+    bucket_name = 'fitnessappdata'
+    username = st.session_state.username
 
     # Define the tite:
     set_bg_hack('Photos/backg.png')
@@ -90,7 +94,7 @@ def main():
 
     if st.button(":floppy_disk:", help = "APPEND THE NEW ACTIVITIES IN THE SAVED DATASET"):
         try:
-            save(data, weekly, st.session_state.weeks, st.session_state.act)
+            save(data, weekly, st.session_state.weeks, st.session_state.act, username, s3, bucket_name)
         except:
             no_req = "THERE IS NOTHING TO SAVE."
             st.markdown(f'<p style="text-align: center; padding: 20px; background-color:#F5CDC9; color:#F01B06; font-size:15px; border-radius:2%;">{no_req}</p>', unsafe_allow_html=True)

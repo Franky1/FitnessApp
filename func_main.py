@@ -190,6 +190,7 @@ def group_by_weeks(data):
     count = weekly.groupby('Week').count()
     counts = weekly.copy()
     st.write(weekly)
+    st.write('ara')
     weekly = weekly.groupby('Week').mean()
     st.write(weekly)
 

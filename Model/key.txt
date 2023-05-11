@@ -1,0 +1,10 @@
+Calories
+Month
+AverageSpeed
+MinimumTemperature
+Performance
+Difficulty
+Weight training
+Road biking
+Year
+MaximumSpeed

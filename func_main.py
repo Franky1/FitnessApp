@@ -185,12 +185,10 @@ def group_by_weeks(data):
         data['Week'] = pd.to_datetime(pd.to_datetime(data['Week']).dt.date)
 
   #Create the weekly grouped dataset:
-    st.write(data)
     weekly = data.copy()
     count = weekly.groupby('Week').count()
     counts = weekly.copy()
-    st.write(weekly)
-    st.write('ara')
+    weekly = weekly.drop(['ActivityType', 'Date', 'Title', 'day-of-week'], axis = 1).groupby('Week').mean()
     weekly = weekly.groupby('Week').mean()
     st.write(weekly)
 

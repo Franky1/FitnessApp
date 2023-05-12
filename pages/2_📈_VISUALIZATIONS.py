@@ -41,7 +41,7 @@ def main2():
 
     # Read the data and clean it for the visualitzations:
     try:
-        data, weekly = read(username)
+        data, weekly = read(username, s3)
         data = clean3(data)
 
         # Add filter for all visualitzations

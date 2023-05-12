@@ -1,5 +1,4 @@
 from config import*
-st.set_page_config(page_title = "Training Activities", layout="wide", page_icon = Image.open('Photos/icon.png'))
 from func_main import *
 
 

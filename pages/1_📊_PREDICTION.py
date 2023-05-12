@@ -62,47 +62,47 @@ def main():
         "MinimumAltitude": 'In meters', "MaximumAltitude": 'In meters'}, index = [0])
     df['ActivityType'] = (df['ActivityType'].astype("category").cat.add_categories(['Running', 'Road biking', 'Mountain biking', 'Spinning', 'Weight training']))
     new_activities = st.experimental_data_editor(df, num_rows="dynamic")
-    #try:
-    k1 = f"Data/{username}Data.csv"
-    k2 = f"Data/{username}Weekly.csv"
+    try:
+        k1 = f"Data/{username}Data.csv"
+        k2 = f"Data/{username}Weekly.csv"
 
-    response1 = s3.get_object(Bucket='fitnessappdata', Key=k1)
-    csv_contents1 = response1['Body'].read().decode('utf-8')
-    response2 = s3.get_object(Bucket='fitnessappdata', Key=k2)
-    csv_contents2 = response2['Body'].read().decode('utf-8')
+        response1 = s3.get_object(Bucket='fitnessappdata', Key=k1)
+        csv_contents1 = response1['Body'].read().decode('utf-8')
+        response2 = s3.get_object(Bucket='fitnessappdata', Key=k2)
+        csv_contents2 = response2['Body'].read().decode('utf-8')
 
         # Convert the CSV data into a Pandas DataFrame
-    data = pd.read_csv(StringIO(csv_contents1), index_col = 0)
-    weekly = pd.read_csv(StringIO(csv_contents2), index_col = 0).rename(columns={'Week.1': 'Week'})
+        data = pd.read_csv(StringIO(csv_contents1), index_col = 0)
+        weekly = pd.read_csv(StringIO(csv_contents2), index_col = 0).rename(columns={'Week.1': 'Week'})
        ### data = pd.read_csv('Data/data.csv', index_col = 0)
        ### weekly = pd.read_csv('Data/weekly.csv', index_col = 0).rename(columns={"Week.1": "Week"})
-    #except:
-    #    error = "THERE IS NOT ANY DATA SAVED. MAKE SURE TO UPLOAD YOUR DATA IN THE PREVIOUS SECTION."
-    #    st.markdown(f'<p style="text-align: center; padding: 20px; background-color:#F5CDC9; color:#F01B06; font-size:15px; border-radius:2%;">{error}</p>', unsafe_allow_html=True)
+    except:
+        error = "THERE IS NOT ANY DATA SAVED. MAKE SURE TO UPLOAD YOUR DATA IN THE PREVIOUS SECTION."
+        st.markdown(f'<p style="text-align: center; padding: 20px; background-color:#F5CDC9; color:#F01B06; font-size:15px; border-radius:2%;">{error}</p>', unsafe_allow_html=True)
 
 
     if st.button('Done', help = "Press the button once you have filled the dataset with the new activities."):
-        try:
-            new_activities = clean2(new_activities)
-            df, new_weeks = perf_label(new_activities, data, weekly)
-            new_weeks, result = predict(new_weeks, weekly)
+        #try:
+         new_activities = clean2(new_activities)
+         df, new_weeks = perf_label(new_activities, data, weekly)
+         new_weeks, result = predict(new_weeks, weekly)
 
                 # Compare the performance with entire history:
-            new_weeks = compare(weekly, new_weeks)
+         new_weeks = compare(weekly, new_weeks)
 
                 # recommendation messages
-            st.markdown(f'<p style="text-align: center; color:#303030; font-size:30px;">SUMMARY OF NEW WEEKS</p>', unsafe_allow_html=True)
-            st.write(new_weeks)
-            new_weeks = recomendation(new_weeks, weekly, data, result)
+         st.markdown(f'<p style="text-align: center; color:#303030; font-size:30px;">SUMMARY OF NEW WEEKS</p>', unsafe_allow_html=True)
+         st.write(new_weeks)
+         new_weeks = recomendation(new_weeks, weekly, data, result)
 
                 # Print the result: one tab for each week
-            show(new_weeks)
+         show(new_weeks)
 
-            st.session_state.weeks = new_weeks
-            st.session_state.act = df
-        except:
-            no_req = "THE DATA DOES NOT SATISFY THE REQUIREMENTS. MAKE SURE THAT ALL THE VALUES STISFY THE METRICS SPECIFIED AND THAT THERE IS NOT ANY NULL VALUE."
-            st.markdown(f'<p style="text-align: center; padding: 20px; background-color:#F5CDC9; color:#F01B06; font-size:15px; border-radius:2%;">{no_req}</p>', unsafe_allow_html=True)
+         st.session_state.weeks = new_weeks
+         st.session_state.act = df
+        #except:
+            #no_req = "THE DATA DOES NOT SATISFY THE REQUIREMENTS. MAKE SURE THAT ALL THE VALUES STISFY THE METRICS SPECIFIED AND THAT THERE IS NOT ANY NULL VALUE."
+            #st.markdown(f'<p style="text-align: center; padding: 20px; background-color:#F5CDC9; color:#F01B06; font-size:15px; border-radius:2%;">{no_req}</p>', unsafe_allow_html=True)
 
 
         ############################################################################

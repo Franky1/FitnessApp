@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-st.set_page_config(page_title = "Training Activities", layout="wide", page_icon = Image.open('Photos/icon.png'))
+st.set_page_config(page_title = "Training Activities", , page_icon = Image.open('Photos/icon.png'), layout="wide")
 import pandas as pd
 from numpy import NaN
 import time as Time

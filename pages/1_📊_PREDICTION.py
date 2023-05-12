@@ -63,8 +63,19 @@ def main():
     df['ActivityType'] = (df['ActivityType'].astype("category").cat.add_categories(['Running', 'Road biking', 'Mountain biking', 'Spinning', 'Weight training']))
     new_activities = st.experimental_data_editor(df, num_rows="dynamic")
     try:
-        data = pd.read_csv('Data/data.csv', index_col = 0)
-        weekly = pd.read_csv('Data/weekly.csv', index_col = 0).rename(columns={"Week.1": "Week"})
+        k1 = f"Data/{username}Data.csv"
+        k2 = f"Data/{username}Weekly.csv"
+
+        response1 = s3.get_object(Bucket='fitnessappdata', Key=k1)
+        csv_contents1 = response1['Body'].read().decode('utf-8')
+        response2 = s3.get_object(Bucket='fitnessappdata', Key=k2)
+        csv_contents2 = response2['Body'].read().decode('utf-8')
+
+        # Convert the CSV data into a Pandas DataFrame
+        data = pd.read_csv(StringIO(csv_contents1), index_col = 0)
+        weekly = pd.read_csv(StringIO(csv_contents2), index_col = 0).rename(columns={'Week.1': 'Week'})
+       ### data = pd.read_csv('Data/data.csv', index_col = 0)
+       ### weekly = pd.read_csv('Data/weekly.csv', index_col = 0).rename(columns={"Week.1": "Week"})
     except:
         error = "THERE IS NOT ANY DATA SAVED. MAKE SURE TO UPLOAD YOUR DATA IN THE PREVIOUS SECTION."
         st.markdown(f'<p style="text-align: center; padding: 20px; background-color:#F5CDC9; color:#F01B06; font-size:15px; border-radius:2%;">{error}</p>', unsafe_allow_html=True)
@@ -114,17 +125,14 @@ def main():
     # Show results of previous weeks:
     st.markdown("<h1 style='text-align: center; font-size:40px; color: black;'>OLD WEEKS</h1>", unsafe_allow_html=True)
     with st.expander("EXPAND TO SEE PREVIOUS WEEKS"):
-            # Read again just in case the user has appended new data:
         try:
+            # Read again just in case the user has appended new data:
             k1 = f"Data/{username}Data.csv"
             k2 = f"Data/{username}Weekly.csv"
-
             response1 = s3.get_object(Bucket='fitnessappdata', Key=k1)
             csv_contents1 = response1['Body'].read().decode('utf-8')
             response2 = s3.get_object(Bucket='fitnessappdata', Key=k2)
             csv_contents2 = response2['Body'].read().decode('utf-8')
-
-            # Convert the CSV data into a Pandas DataFrame
             data = pd.read_csv(StringIO(csv_contents1), index_col = 0)
             weekly = pd.read_csv(StringIO(csv_contents2), index_col = 0).rename(columns={'Week.1': 'Week'})
             #data = pd.read_csv('Data/data.csv', index_col = 0)
@@ -133,6 +141,7 @@ def main():
             dy = st.date_input('Select any date:', data['Date'].max(),\
                  min_value = data['Date'].min(), max_value = data['Date'].max(), label_visibility="collapsed")
             prev_weeks, w = search_prev(dy, weekly, data)
+            
             # Show the activities of that week:
             txt = 'THE ACTIVITIES OF THE SELECTED WEEK WERE THE FOLLOWING:'
             st.markdown(f'<p style="text-align: center; padding: 20px; color:black; font-size:28px;">{txt}</p>', unsafe_allow_html=True)

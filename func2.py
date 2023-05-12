@@ -1,8 +1,19 @@
 from config import*
 
-def read():
-    data = pd.read_csv('Data/data.csv', index_col = 0)
-    weekly = pd.read_csv('Data/weekly.csv', index_col = 0).rename(columns={"Week.1": "Week"})
+def read(username, s3):
+    k1 = f"Data/{username}Data.csv"
+    k2 = f"Data/{username}Weekly.csv"
+
+    response1 = s3.get_object(Bucket='fitnessappdata', Key=k1)
+    csv_contents1 = response1['Body'].read().decode('utf-8')
+    response2 = s3.get_object(Bucket='fitnessappdata', Key=k2)
+    csv_contents2 = response2['Body'].read().decode('utf-8')
+
+        # Convert the CSV data into a Pandas DataFrame
+    data = pd.read_csv(StringIO(csv_contents1))
+    weekly = pd.read_csv(StringIO(csv_contents2), index_col = 0).rename(columns={'Week.1': 'Week'})
+    ###data = pd.read_csv('Data/data.csv', index_col = 0)
+    ###weekly = pd.read_csv('Data/weekly.csv', index_col = 0).rename(columns={"Week.1": "Week"})
     return data, weekly
 
 def clean3(data):

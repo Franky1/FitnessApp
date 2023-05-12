@@ -1,4 +1,5 @@
 import streamlit as st
+from PIL import Image
 st.set_page_config(page_title = "Training Activities", layout="wide", page_icon = Image.open('Photos/icon.png'))
 import pandas as pd
 from numpy import NaN
@@ -12,7 +13,6 @@ import altair as alt
 import pickle
 from sklearn.metrics import recall_score
 import numpy as np
-from PIL import Image
 import plotly.graph_objects as go
 from io import BytesIO
 from io import StringIO

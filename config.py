@@ -1,4 +1,5 @@
 import streamlit as st
+st.set_page_config(page_title = "Training Activities", layout="wide", page_icon = Image.open('Photos/icon.png'))
 import pandas as pd
 from numpy import NaN
 import time as Time

@@ -62,23 +62,23 @@ def main():
         "MinimumAltitude": 'In meters', "MaximumAltitude": 'In meters'}, index = [0])
     df['ActivityType'] = (df['ActivityType'].astype("category").cat.add_categories(['Running', 'Road biking', 'Mountain biking', 'Spinning', 'Weight training']))
     new_activities = st.experimental_data_editor(df, num_rows="dynamic")
-    try:
-        k1 = f"Data/{username}Data.csv"
-        k2 = f"Data/{username}Weekly.csv"
+    #try:
+    k1 = f"Data/{username}Data.csv"
+    k2 = f"Data/{username}Weekly.csv"
 
-        response1 = s3.get_object(Bucket='fitnessappdata', Key=k1)
-        csv_contents1 = response1['Body'].read().decode('utf-8')
-        response2 = s3.get_object(Bucket='fitnessappdata', Key=k2)
-        csv_contents2 = response2['Body'].read().decode('utf-8')
+    response1 = s3.get_object(Bucket='fitnessappdata', Key=k1)
+    csv_contents1 = response1['Body'].read().decode('utf-8')
+    response2 = s3.get_object(Bucket='fitnessappdata', Key=k2)
+    csv_contents2 = response2['Body'].read().decode('utf-8')
 
         # Convert the CSV data into a Pandas DataFrame
-        data = pd.read_csv(StringIO(csv_contents1), index_col = 0)
-        weekly = pd.read_csv(StringIO(csv_contents2), index_col = 0).rename(columns={'Week.1': 'Week'})
+    data = pd.read_csv(StringIO(csv_contents1), index_col = 0)
+    weekly = pd.read_csv(StringIO(csv_contents2), index_col = 0).rename(columns={'Week.1': 'Week'})
        ### data = pd.read_csv('Data/data.csv', index_col = 0)
        ### weekly = pd.read_csv('Data/weekly.csv', index_col = 0).rename(columns={"Week.1": "Week"})
-    except:
-        error = "THERE IS NOT ANY DATA SAVED. MAKE SURE TO UPLOAD YOUR DATA IN THE PREVIOUS SECTION."
-        st.markdown(f'<p style="text-align: center; padding: 20px; background-color:#F5CDC9; color:#F01B06; font-size:15px; border-radius:2%;">{error}</p>', unsafe_allow_html=True)
+    #except:
+    #    error = "THERE IS NOT ANY DATA SAVED. MAKE SURE TO UPLOAD YOUR DATA IN THE PREVIOUS SECTION."
+    #    st.markdown(f'<p style="text-align: center; padding: 20px; background-color:#F5CDC9; color:#F01B06; font-size:15px; border-radius:2%;">{error}</p>', unsafe_allow_html=True)
 
 
     if st.button('Done', help = "Press the button once you have filled the dataset with the new activities."):

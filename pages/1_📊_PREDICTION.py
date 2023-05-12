@@ -39,9 +39,9 @@ def main():
     THEIR FUTURE PERFORMANCE. FURTHERMORE, THE SYSTEM PROVIDES A HELPFUL SUGGESTION MESSAGE TO THE USER."""
     st.markdown(f'<p style="text-align: center; padding: 10px; background-color:#FAFAFA; color:#303030; font-size:18px; border-color:#EEEEEE; borderwidth:20px; border-radius:2%;">{expl}</p>', unsafe_allow_html=True)
     with st.columns((2, 3.3))[0]:
-            username = st.text_input("WRITE YOUR USER NAME", "", help = "Write your User Name")
-            if not existing_users["UserName"].str.contains(username).any():
-                st.error(f"{username} doesn't exist")
+        username = st.text_input("WRITE YOUR USER NAME", "", help = "Write your User Name")
+        if not existing_users["UserName"].str.contains(username).any():
+            st.error(f"{username} doesn't exist")
     st.write('-'*60)
 
         ############################################################################

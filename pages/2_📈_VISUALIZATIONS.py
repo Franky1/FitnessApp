@@ -12,6 +12,13 @@ st.set_page_config(page_title = "Training Activities", layout="wide", page_icon 
 from func2 import*
 
 def main2():
+    s3 = boto3.client('s3', aws_access_key_id='AKIAW4BRQNULH32VEHOM',
+                      aws_secret_access_key='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')
+    bucket_name = 'fitnessappdata'
+    response = s3.get_object(Bucket='fitnessappdata', Key="UserNames.csv")
+    csv_contents = response['Body'].read().decode('utf-8')
+    existing_users = pd.read_csv(StringIO(csv_contents), index_col = 0)
+
     set_bg_hack('Photos/backg.png')
 
     st.write('-'*60)
@@ -21,6 +28,10 @@ def main2():
     OF PHYSICAL CONDITION, CORRELATIONS BETWEEN FEATURES AND USER'S PERFORMANCE,
     CLUSTERING OF TRAINING PERIODS, ETC."""
     st.markdown(f'<p style="text-align: center; padding: 20px; background-color:#FAFAFA; color:#303030; font-size:18px; border-color:#EEEEEE; borderwidth:20px; border-radius:2%;">{expl}</p>', unsafe_allow_html=True)
+    with st.columns((2, 3.3))[0]:
+            username = st.text_input("WRITE YOUR USER NAME", "", help = "Write your User Name")
+            if not existing_users["UserName"].str.contains(username).any():
+                st.error(f"{username} doesn't exist")
     st.write('-'*60)
 
 
@@ -30,7 +41,7 @@ def main2():
 
     # Read the data and clean it for the visualitzations:
     try:
-        data, weekly = read()
+        data, weekly = read(username)
         data = clean3(data)
 
         # Add filter for all visualitzations

@@ -72,7 +72,7 @@ def main():
         csv_contents2 = response2['Body'].read().decode('utf-8')
 
         # Convert the CSV data into a Pandas DataFrame
-        data = pd.read_csv(StringIO(csv_contents1), index_col = 0)
+        data = pd.read_csv(StringIO(csv_contents1))
         weekly = pd.read_csv(StringIO(csv_contents2), index_col = 0).rename(columns={'Week.1': 'Week'})
         data2 = pd.read_csv('Data/data.csv', index_col = 0)
         weekly2 = pd.read_csv('Data/weekly.csv', index_col = 0).rename(columns={"Week.1": "Week"})

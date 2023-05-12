@@ -74,8 +74,12 @@ def main():
         # Convert the CSV data into a Pandas DataFrame
         data = pd.read_csv(StringIO(csv_contents1), index_col = 0)
         weekly = pd.read_csv(StringIO(csv_contents2), index_col = 0).rename(columns={'Week.1': 'Week'})
-       ### data = pd.read_csv('Data/data.csv', index_col = 0)
-       ### weekly = pd.read_csv('Data/weekly.csv', index_col = 0).rename(columns={"Week.1": "Week"})
+        data2 = pd.read_csv('Data/data.csv', index_col = 0)
+        weekly2 = pd.read_csv('Data/weekly.csv', index_col = 0).rename(columns={"Week.1": "Week"})
+        st.write(data)
+        st.write(data2)
+        st.write(weekly)
+        st.write(weekly2)
     except:
         error = "THERE IS NOT ANY DATA SAVED. MAKE SURE TO UPLOAD YOUR DATA IN THE PREVIOUS SECTION."
         st.markdown(f'<p style="text-align: center; padding: 20px; background-color:#F5CDC9; color:#F01B06; font-size:15px; border-radius:2%;">{error}</p>', unsafe_allow_html=True)

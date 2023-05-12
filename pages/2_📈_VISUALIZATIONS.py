@@ -7,6 +7,7 @@ parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir)
 
 from config import *
+st.set_page_config(page_title = "Training Activities", page_icon = Image.open('Photos/icon.png'), layout="wide")
 from func2 import*
 
 def main2():

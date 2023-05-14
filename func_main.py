@@ -1,5 +1,47 @@
 from config import*
 
+
+def login(s3, user):
+    response = s3.get_object(Bucket='fitnessappdata', Key="UserNames.csv")
+    csv_contents = response['Body'].read().decode('utf-8')
+    existing_users = pd.read_csv(StringIO(csv_contents), index_col = 0)
+    if not user:
+        username = st.text_input("WRITE YOUR USER NAME", "", help = "Write your User Name")
+        password = st.text_input("WRITE YOUR PASSWORD", "", help = "Write your Password")
+        ## CHECK USERNAME AND PASSWORD ARE CORRECT
+        login = st.button("Log in")
+        if login:
+            if not existing_users["UserName"].str.contains(username).any():
+                st.error(f"{username} doesn't exist")
+            elif existing_users.loc[existing_users["UserName"] == username, "Password"].values[0] != password:
+                st.error(f"username/password incorrect")
+            else:
+                return username
+
+    else:
+        # Ask for the user name
+            username = st.text_input("WRITE A NEW USER NAME", "", help = "Write a User Name")
+            pas1 = st.text_input("WRITE A PASSWORD", "", help = "Write a Password")
+            pas2 = st.text_input("REPEAT THE PASSWORD", "", help = "Repeat the Password")
+            reg = st.button("Register")
+            if reg:
+                if (existing_users["UserName"].str.contains(username).any() and username != "" ) or (pas1 != pas2):
+                    if pas1 != pas2:
+                        st.error("Passwords don't coincide")
+                    else:
+                        st.error(f"{username} already exists.")
+                else:
+                    if username != "":
+                        existing_users = existing_users.append({'UserName':username, 'Password': pas1}, ignore_index = True)
+                        # Save the user name AND PASWORD
+                        csv_buffer = StringIO()
+                        existing_users.to_csv(csv_buffer)
+                        csv_data = csv_buffer.getvalue().encode('utf-8')
+                        s3.upload_fileobj(BytesIO(csv_data), 'fitnessappdata', "UserNames.csv")
+                        st.markdown(f'<p style="text-align: left;color:#006400; font-size:15px; border-radius:2%;">UserName correctly stored. Now you can Log in.</p>', unsafe_allow_html=True)
+                        return username
+
+
 def read(data):
   '''Function that reads the dataset exported from GARMIN APP'''
 
@@ -504,7 +546,8 @@ def save(model, X_train, X_test, y_train, y_test, keylist, y_pred, weekly, data,
     s3.put_object(Bucket=bucket_name, Key=f"Model/{username}/key.txt", Body=text_bytes)
 
     for key in st.session_state.keys():
-        del st.session_state[key]
+        if key != 'username':
+            del st.session_state[key]
 
 
 def metrics(weekly, model, X_train, X_test, y_train, y_test, keylist, y_pred):

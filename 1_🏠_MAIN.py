@@ -60,8 +60,8 @@ def main():
             have not yet saved any data. Note that this option will result in the loss of any
             previously saved data and will cause the entire dashboard to adjust and reflect the new dataset,
             effectively replacing any previously saved information."""
-            expl22 = """=> Saved data means that the app will only include new activities that
-            were saved since the last time the model was trained, and then retrain the model."""
+            expl22 = """=> Saved data means that the app the app will use the initial automatically saved 
+            database with all the activity records that the user has been saving."""
 
             with st.expander("EXTRA INFORMATION:"):
                 st.markdown(f'<p style="text-align: left; padding: 20px; color:#303030; font-size:18px; border-color:#EEEEEE; borderwidth:20px; border-radius:2%;">{expl2}</p>', unsafe_allow_html=True)

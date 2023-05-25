@@ -226,15 +226,15 @@ def show(new_weeks):
                         st.markdown(f'<p style="text-align: center; padding: 20px; background-color:#F5E4C9; color:#FD9C02; font-size:20px; border-radius:2%;">{text}</p>', unsafe_allow_html=True)
 
                     # Show the recommendation messages:
-                    m1 = "Rest. Too much minutes"
-                    m2 = "Rest. Too much activities"
-                    m3 = "Rest. Too much anaerobic"
-                    m4 = "Try to do longer activities"
-                    m5 = "Try to train more days"
-                    m6 = "Try to do more anaerobic activities"
-                    m7 = "Try different activities"
-                    m8 = "Would be a good idea to train by accumulating more positive elevation gain"
-                    m9 = "Unlucky your performance will probably descrease. Try to change your training routine"
+                    m1 = "You should rest. You have trained too much minutes."
+                    m2 = "You should rest. You have done too much activities."
+                    m3 = "You should rest. You have done yoo much anaerobic minutes."
+                    m4 = "You should try to do longer activities."
+                    m5 = "You should try to train more days."
+                    m6 = "You should try to do more anaerobic activities."
+                    m7 = "You should try different activity types."
+                    m8 = "It may be a good idea to train by accumulating more positive elevation gain."
+                    m9 = "Unlucky your performance will probably descrease. Try to change your training routine."
                     messages = {'m1':m1, 'm2':m2, 'm3':m3, 'm4':m4, 'm5':m5, 'm6':m6, 'm7':m7, 'm8':m8, 'm9':m9}
 
                     text = ""

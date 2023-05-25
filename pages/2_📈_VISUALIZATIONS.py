@@ -22,7 +22,7 @@ def main2():
     st.write('-'*60)
     expl = """THIS SECTION SHOWS RELEVANT INSIGHTS FROM ALL RECORDED ACTIVITIES.
     GRAPHICS ABOUT THE EVOLUTION OF THE PERFORMANCE, MAXIMUM AND MINIMUM PEAK
-    OF PHYSICAL CONDITION, CORRELATIONS BETWEEN FEATURES AND USER'S PERFORMANCE,
+    OF PHYSICAL CONDITION, CORRELATIONS BETWEEN FEATURES AND YOUR PERFORMANCE,
     CLUSTERING OF TRAINING PERIODS, ETC."""
     st.markdown(f'<p style="text-align: center; padding: 20px; background-color:#FAFAFA; color:#303030; font-size:18px; border-color:#EEEEEE; borderwidth:20px; border-radius:2%;">{expl}</p>', unsafe_allow_html=True)
     st.write('-'*60)

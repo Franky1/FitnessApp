@@ -190,7 +190,7 @@ def main():
             st.markdown(f'<p style="text-align: center; color:#303030; font-size:20px;">MAXIMUM TIME (MINUTES)</p>', unsafe_allow_html=True)
             time = st.slider("Maximum time", min_value=0, max_value=120, value = 5, label_visibility = "collapsed", key = 'sl')
         with st.expander("EXTRA INFORMATION: "):
-            exp_metrics1 = "Accuracy and recall are two commonly used metrics in machine learning and data analysis that are used to evaluate the performance of a model or algorithm."
+            exp_metrics1 = "Accuracy and recall are two commonly used metrics in machine learning and data analysis that assess the performance of a model or algorithm."
             exp_metrics2 = "=> Accuracy is a measure of how well a model is able to correctly classify examples. It is defined as the percentage of correct predictions made by the model over all predictions made."
             exp_metrics3 = "=> Recall is a measure of how well a model is able to correctly identify examples of one specific class. It is defined as the percentage of correctly identified examples over all examples that are from an specific."
             exp_metrics4 = "=> Also, there is the chance of choosing the time duration during which the app will search for a model that meets the specified conditions. If the app is unable to find a suitable model within the specified time limit, the search will be terminated and you will be notified that it was not possible to find a model that satisfies the given conditions"

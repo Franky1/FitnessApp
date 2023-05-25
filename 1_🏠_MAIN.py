@@ -192,7 +192,7 @@ def main():
         with st.expander("EXTRA INFORMATION: "):
             exp_metrics1 = "Accuracy and recall are two commonly used metrics in machine learning and data analysis that assess the performance of a model or algorithm."
             exp_metrics2 = "=> Accuracy is a measure of how well a model is able to correctly classify examples. It is defined as the percentage of correct predictions made by the model over all predictions made."
-            exp_metrics3 = "=> Recall is a measure of how well a model is able to correctly identify examples of one specific class. It is defined as the percentage of correctly identified examples over all examples that are from an specific."
+            exp_metrics3 = "=> Recall is a measure of how well a model is able to correctly identify examples of one specific class. It is defined as the percentage of correctly identified examples over all examples that are from an specific class."
             exp_metrics4 = "=> Also, there is the chance of choosing the time duration during which the app will search for a model that meets the specified conditions. If the app is unable to find a suitable model within the specified time limit, the search will be terminated and you will be notified that it was not possible to find a model that satisfies the given conditions"
             st.markdown(f'<p style="text-align: left; padding: 20px; color:#303030; font-size:18px; border-color:#EEEEEE; borderwidth:20px; border-radius:2%;">{exp_metrics1}</p>', unsafe_allow_html=True)
             st.markdown(f'<p style="text-align: left; padding: 20px; color:#303030; font-size:18px; border-color:#EEEEEE; borderwidth:20px; border-radius:2%;">{exp_metrics2}</p>', unsafe_allow_html=True)

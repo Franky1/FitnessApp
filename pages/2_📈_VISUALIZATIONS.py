@@ -86,7 +86,14 @@ def main2():
                     res_min = date_min[0].upper() + ": " + str(round(min, 2))
                     st.markdown("<p style = font-size:20px; > MIN. PERFORMANCE: ", unsafe_allow_html = True)
                     st.markdown(f'<p style = color:#F93419; font-size:10px;">{res_min}</p>', unsafe_allow_html=True)
-                st.code("EXPLANATION OF THE CHART AND PERF CALCULATION")
+                perf = """THE PERFORMANCE SCORE IS A NUMERICAL VALUE FROM 1 TO 10
+                    THAT THE SYSTEM ASSIGNS TO EACH OF THE ACTIVITIES BASED ON THE RECORDED
+                    DATA. AS THIS NUMBER INCREASES, IT INDICATES SUPERIOR PERFORMANCE,
+                    IMPLYING THAT THE TRAINING RESULTS ARE SUPERIOR COMPARED TO SIMILAR WORKOUTS."""
+                for i in range(3):
+                    st.markdown("")
+                st.markdown(f'<p style="text-align: left; padding: 20px; background-color:#FAFAFA; color:#303030; font-size:18px; border-color:#EEEEEE; borderwidth:20px; border-radius:2%;">{perf}</p>', unsafe_allow_html=True)
+
 
 
             ##########################################################################

@@ -90,7 +90,7 @@ def main2():
                     THAT THE SYSTEM ASSIGNS TO EACH OF THE ACTIVITIES BASED ON THE RECORDED
                     DATA. AS THIS NUMBER INCREASES, IT INDICATES SUPERIOR PERFORMANCE,
                     IMPLYING THAT THE TRAINING RESULTS ARE SUPERIOR COMPARED TO SIMILAR WORKOUTS."""
-                for i in range(3):
+                for i in range(2):
                     st.markdown("")
                 st.markdown(f'<p style="text-align: left; padding: 20px; background-color:#FAFAFA; color:#303030; font-size:18px; border-color:#EEEEEE; borderwidth:20px; border-radius:2%;">{perf}</p>', unsafe_allow_html=True)
 

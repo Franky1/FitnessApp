@@ -37,7 +37,7 @@ def login(s3, user):
                         csv_buffer = StringIO()
                         existing_users.to_csv(csv_buffer)
                         csv_data = csv_buffer.getvalue().encode('utf-8')
-                        s3.upload_fileobj(BytesIO(csv_data), 'fitnessapdata', "UserNames.csv")
+                        s3.upload_fileobj(BytesIO(csv_data), 'fitnessappdata', "UserNames.csv")
                         st.markdown(f'<p style="text-align: left;color:#006400; font-size:15px; border-radius:2%;">UserName correctly stored. Now you can Log in.</p>', unsafe_allow_html=True)
                         return username
 

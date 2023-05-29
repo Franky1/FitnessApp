@@ -13,8 +13,8 @@ from func2 import*
 def main2():
     s3 = boto3.client('s3', aws_access_key_id = os.environ.get('KEY_ID')
                       aws_secret_access_key = os.environ.get('SECRET_KEY')
-    bucket_name = 'fitnessapdata'
-    response = s3.get_object(Bucket='fitnessapdata', Key="UserNames.csv")
+    bucket_name = 'fitnessappdata'
+    response = s3.get_object(Bucket='fitnessappdata', Key="UserNames.csv")
     csv_contents = response['Body'].read().decode('utf-8')
     existing_users = pd.read_csv(StringIO(csv_contents), index_col = 0)
 

@@ -151,14 +151,14 @@ def main():
         elif opt == 'SAVED DATA':
             try:
                 #FROM AWS:
-                s3 = boto3.client('s3', aws_access_key_id='AKIAW4BRQNULH32VEHOM',
-                          aws_secret_access_key='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')
+                s3 = boto3.client('s3', aws_access_key_id = os.environ.get('KEY_ID'),
+                          aws_secret_access_key=os.environ.get('SECRET_KEY'))
                 k1 = f"Data/{st.session_state.username}/Data.csv"
                 k2 = f"Data/{st.session_state.username}/Weekly.csv"
 
-                response1 = s3.get_object(Bucket='fitnessapdata', Key=k1)
+                response1 = s3.get_object(Bucket='fitnessappdata', Key=k1)
                 csv_contents1 = response1['Body'].read().decode('utf-8')
-                response2 = s3.get_object(Bucket='fitnessapdata', Key=k2)
+                response2 = s3.get_object(Bucket='fitnessappdata', Key=k2)
                 csv_contents2 = response2['Body'].read().decode('utf-8')
 
                 # Convert the CSV data into a Pandas DataFrame
@@ -276,7 +276,7 @@ def main():
                 y_pred = pickle.loads(response['Body'].read())
 
 
-                response = s3.get_object(Bucket='fitnessapdata', Key=f"Data/{st.session_state.username}/Weekly.csv")
+                response = s3.get_object(Bucket='fitnessappdata', Key=f"Data/{st.session_state.username}/Weekly.csv")
                 csv_contents = response['Body'].read().decode('utf-8')
                 weekly = pd.read_csv(StringIO(csv_contents), index_col = 0).rename(columns={'Week.1': 'Week'})
 

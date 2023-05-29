@@ -4,9 +4,9 @@ def read(username, s3):
     k1 = f"Data/{username}/Data.csv"
     k2 = f"Data/{username}/Weekly.csv"
 
-    response1 = s3.get_object(Bucket='fitnessapdata', Key=k1)
+    response1 = s3.get_object(Bucket='fitnessappdata', Key=k1)
     csv_contents1 = response1['Body'].read().decode('utf-8')
-    response2 = s3.get_object(Bucket='fitnessapdata', Key=k2)
+    response2 = s3.get_object(Bucket='fitnessappdata', Key=k2)
     csv_contents2 = response2['Body'].read().decode('utf-8')
 
     # Convert the CSV data into a Pandas DataFrame

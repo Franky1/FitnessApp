@@ -11,8 +11,8 @@ st.set_page_config(page_title = "Training Activities", page_icon = Image.open('P
 from func2 import*
 
 def main2():
-    s3 = boto3.client('s3', aws_access_key_id = 'AKIAZYR26MZSCDXIKJ2H', #os.environ.get('KEY_ID')
-                      aws_secret_access_key = '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') #os.environ.get('SECRET_KEY')
+    s3 = boto3.client('s3', aws_access_key_id = os.environ.get('KEY_ID')
+                      aws_secret_access_key = os.environ.get('SECRET_KEY')
     bucket_name = 'fitnessapdata'
     response = s3.get_object(Bucket='fitnessapdata', Key="UserNames.csv")
     csv_contents = response['Body'].read().decode('utf-8')

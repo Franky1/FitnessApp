@@ -2,7 +2,7 @@ from config import*
 
 
 def login(s3, user):
-    response = s3.get_object(Bucket='fitnessapdata', Key="UserNames.csv")
+    response = s3.get_object(Bucket='fitnessappdata', Key="UserNames.csv")
     csv_contents = response['Body'].read().decode('utf-8')
     existing_users = pd.read_csv(StringIO(csv_contents), index_col = 0)
     if not user:

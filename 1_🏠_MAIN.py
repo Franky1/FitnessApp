@@ -71,7 +71,7 @@ def main():
             ## LET THE USER UPLOAD THEIR DATA
             col1, mid, col2 = st.columns((2,0.3, 3))
             with col1:
-                type = st.selectbox('type_watch', ['Select type of Smart Watch','Garmin Fenix S6', 'Garmin Forerunner', 'Other'], label_visibility="collapsed")
+                type = st.selectbox('type_watch', ['Garmin Fenix S6', 'Garmin Forerunner', 'Other'], label_visibility="collapsed")
                 uploadedFile = st.file_uploader('uploadedFile', type=['csv','xlsx'],accept_multiple_files=False,key="uploadedFile", label_visibility = "collapsed")
             with col2:
                 with open("Data/RequirementsData.docx", 'rb') as f:

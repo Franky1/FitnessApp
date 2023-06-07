@@ -156,7 +156,7 @@ def main():
             try:
                 #FROM AWS:
                 s3 = boto3.client('s3', aws_access_key_id = os.environ.get('KEY_ID'),
-                          aws_secret_access_key='Fdd72lIYM3Jg8smEONBqigpKRyfQMamt8kh4D0Rj')
+                          aws_secret_access_key= os.environ.get('SECRET_KEY'))
                 k1 = f"Data/{st.session_state.username}/Data.csv"
                 k2 = f"Data/{st.session_state.username}/Weekly.csv"
 

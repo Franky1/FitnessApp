@@ -197,7 +197,7 @@ def main2():
                 st.altair_chart(chart7)
             with hist:
                 var5 = st.selectbox('Selec num variables:', data.select_dtypes(include=np.number).columns.tolist(),label_visibility = "collapsed")
-                act_types3 = st.multiselect('Select activity type: ', list(data['ActivityType'].unique()), default =  "Road biking", label_visibility = "collapsed")
+                act_types3 = st.multiselect('Select activity type: ', list(data['ActivityType'].unique()), default =  "Running", label_visibility = "collapsed")
                 chart8 = histogram(data[data['ActivityType'].isin(act_types3)], var5)
                 st.altair_chart(chart8)
             with st.expander("EXTRA INFORMATION:"):

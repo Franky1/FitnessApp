@@ -98,7 +98,7 @@ def main():
                         ok = "DATA READ CORRECTLY"
                         st.markdown(f'<p style="text-align: left; color:#006400; font-size:20px; border-radius:2%;">{ok}</p>', unsafe_allow_html=True)
                 except:
-                    error = "THE DATA COULD NOT BE READ CORRECTLY. MAKE SURE THAT THE DATABASE MEETS THE SPECIFIED REQUIREMENTS."
+                    error = "THE DATAA COULD NOT BE READ CORRECTLY. MAKE SURE THAT THE DATABASE MEETS THE SPECIFIED REQUIREMENTS."
                     st.markdown(f'<p style="text-align: center; padding: 20px; background-color:#F5CDC9; color:#F01B06; font-size:15px; border-radius:2%;">{error}</p>', unsafe_allow_html=True)
                     return
 
